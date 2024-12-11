@@ -7,6 +7,7 @@ app = FastAPI()
 
 # Directory to store uploaded images
 UPLOAD_DIR = "uploaded_images"
+API_URL = "https://image-api-szan.onrender.com"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.get('/')
@@ -32,7 +33,7 @@ async def upload_image(user_id: str = Form(...), file: UploadFile = File(...)):
         f.write(content)
 
     # Generate a URL/path to return
-    file_url = f"http://127.0.0.1:8000/{UPLOAD_DIR}/{unique_filename}"
+    file_url = f"{API_URL}/{unique_filename}"
     
     return JSONResponse({"url": file_url})
 
