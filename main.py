@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile, Form
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 import os
 import uuid
 
@@ -44,5 +44,4 @@ async def serve_image(filename: str):
     file_path = os.path.join(UPLOAD_DIR, filename)
     if not os.path.exists(file_path):
         return JSONResponse({"error": "File not found"}, status_code=404)
-
-    return fastapi.responses.FileResponse(file_path)
+    return FileResponse(file_path)
