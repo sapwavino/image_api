@@ -33,7 +33,7 @@ async def upload_image(user_id: str = Form(...), file: UploadFile = File(...)):
         f.write(content)
 
     # Generate a URL/path to return
-    file_url = f"{API_URL}/{unique_filename}"
+    file_url = f"{API_URL}/{UPLOAD_DIR}/{unique_filename}"
     
     return JSONResponse({"url": file_url})
 
