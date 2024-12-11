@@ -9,6 +9,10 @@ app = FastAPI()
 UPLOAD_DIR = "uploaded_images"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+@app.get('/')
+def home():
+    return "Welcome home!"
+
 @app.post("/upload/")
 async def upload_image(user_id: str = Form(...), file: UploadFile = File(...)):
     """
